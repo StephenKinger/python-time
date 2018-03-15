@@ -1,6 +1,6 @@
 import time
-from transResponseTime import measure_time
-
+from measure_time import measure_time
+import random
 
 class TestHello(object):
     def __init__(self):
@@ -9,7 +9,16 @@ class TestHello(object):
 
     @measure_time()
     def test_hello_m1(self):
-        time.sleep(0.1)
+        r = random.randint(1,10)
+        time.sleep(r/10.0)
 
     def test_hello_m2(self):
             time.sleep(0.1)
+
+
+if __name__ == "__main__":
+    test = TestHello()
+    for ii in range(0,200):
+        test.test_hello_m1()
+
+

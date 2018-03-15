@@ -60,6 +60,12 @@ class GetInflux(object):
 
     def get_influx_client(self):
         self.influx_connection = client.InfluxDBClient(host=self.server, database=self.db_name)
+        found = False
+        for db_name_entry in self.influx_connection.get_list_database():
+            if self.db_name == db_name_entry["name"]:
+                found = True
+        if found == False:
+            self.influx_connection.create_database(self.db_name)
 
     def send_influx_points(self, points):
         try:
