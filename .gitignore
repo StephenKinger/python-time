@@ -2,3 +2,5 @@
 
 .idea/
 *.log
+build/
+measure_time.egg-info/

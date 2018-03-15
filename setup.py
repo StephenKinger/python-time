@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -27,8 +26,8 @@ class PostInstallCommand(install):
 
 
 
-# Ceci n'est qu'un appel de fonction. Mais il est trèèèèèèèèèèès long
-# et il comporte beaucoup de paramètres
+# Ceci n'est qu'un appel de fonction. Mais il est tres long
+# et il comporte beaucoup de parametres
 setup(
 
     # le nom de votre bibliothèque, tel qu'il apparaitre sur pypi
@@ -92,10 +91,7 @@ setup(
         "Topic :: Security",
     ],
 
-    install_requires=['influxdb'],
-
-    data_files=[('/etc/init.d', ['daemon/privaanservice'])],
-
+    install_requires=['influxdb', 'psutil', 'futures'],
 
     # A fournir uniquement si votre licence n'est pas listée dans "classifiers"
     # ce qui est notre cas

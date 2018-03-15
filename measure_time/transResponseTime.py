@@ -42,7 +42,19 @@ class TransResponse(object):
         try:
             config = ConfigParser.ConfigParser(allow_no_value=True)
             os.path.dirname(__file__)
-            config.read('config.cfg')
+            config.add_section('run')
+            config.add_section('influx')
+            config.set('run', 'report_to_influx', 'True')
+            config.set('run', 'collect_net_io', 'False')
+            config.set('run', 'net_device', 'utun0')
+            config.set('influx', 'server', 'localhost')
+            config.set('influx', 'port', '8086')
+            config.set('influx', 'dbname', 'python_response_time')
+            config.set('influx', 'table', 'response_time')
+            config.set('influx', 'measurment', 'response')
+            config.set('influx', 'time_pattern', 'YYYY-MM-DD HH:MM:SS.mmm')
+            if not config.read(['measure_time.cfg', '~/.measure_time.cfg']):
+                print "no configuration file found (measure_time.cfg or ~/.measure_time.cfg) "
             if config.getboolean('run', 'collect_net_io'):
                 global collect_net, net_dev
                 collect_net = True
@@ -53,8 +65,6 @@ class TransResponse(object):
                 global influx
                 influx = transInfluxClient.GetInflux(config.get('influx', 'server'), config.get('influx', 'port'),
                                              config.get('influx', 'dbname'), config.get('influx', 'table'),
-                                             config.get('influx', 'log_file'),
-                                             config.get('influx', 'log_level'),
                                              pattern=config.get('influx', 'time_pattern'))
         except Exception as e:
             print e
