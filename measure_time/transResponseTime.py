@@ -42,7 +42,7 @@ class TransResponse(object):
         try:
             config = ConfigParser.ConfigParser(allow_no_value=True)
             os.path.dirname(__file__)
-            config.read(os.path.dirname(__file__) + '/config.cfg')
+            config.read('config.cfg')
             if config.getboolean('run', 'collect_net_io'):
                 global collect_net, net_dev
                 collect_net = True

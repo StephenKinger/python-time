@@ -5,8 +5,8 @@ import time
 
 from concurrent.futures import ThreadPoolExecutor
 
-import transResponseTime
-from transResponseTime import measure_time
+import measure_time.transResponseTime
+from measure_time.transResponseTime import measure_time
 
 
 @measure_time()
@@ -15,7 +15,7 @@ def a_test_method(sec=0.2):
 
 if __name__ == "__main__":
 
-    tr = transResponseTime
+    tr = measure_time.transResponseTime
 
     #  Plain Usage Examples
     tr.measure('plain_usage_exam', time.sleep, 0.5)
